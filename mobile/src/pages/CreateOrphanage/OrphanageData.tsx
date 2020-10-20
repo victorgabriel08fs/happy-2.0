@@ -24,6 +24,7 @@ export default function OrphanageData() {
 
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
   const [instructions, setInstructions] = useState('');
   const [opening_hours, setOpeningHours] = useState('');
   const [open_on_weekends, setOpenOnWeekends] = useState(false);
@@ -36,6 +37,7 @@ export default function OrphanageData() {
 
     data.append('name', name);
     data.append('about', about);
+    data.append('whatsapp', whatsapp);
     data.append('latitude', String(latitude));
     data.append('longitude', String(longitude));
     data.append('instructions', instructions);
@@ -52,7 +54,7 @@ export default function OrphanageData() {
 
     await api.post('orphanages', data);
 
-    navigation.navigate('OrphanagesMap');
+    navigation.navigate('SucessScreen');
   }
 
   async function handleSelectImages() {
@@ -96,10 +98,12 @@ export default function OrphanageData() {
         onChangeText={setAbout}
       />
 
-      {/* <Text style={styles.label}>Whatsapp</Text>
+      <Text style={styles.label}>Whatsapp</Text>
       <TextInput
+        value={whatsapp}
+        onChangeText={setWhatsapp}
         style={styles.input}
-      /> */}
+      />
 
       <Text style={styles.label}>Fotos</Text>
 

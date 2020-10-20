@@ -14,6 +14,7 @@ interface Orphanage {
   latitude: number;
   longitude: number;
   about: string;
+  whatsapp: string;
   instructions: string;
   opening_hours: string;
   open_on_weekends: boolean;
@@ -38,6 +39,10 @@ export default function OrphanageDetails() {
     Linking.openURL(`https://www.google.com/maps/dir/?api=1&destination=${orphanage?.latitude},${orphanage?.longitude}`);
   }
 
+  function openWhatsapp() {
+    Linking.openURL(`https://wa.me/55${orphanage?.whatsapp}`);
+  }
+
   useEffect(() => {
     api.get(`orphanages/${params.id}`,).then(response => {
       setOrphanage(response.data);
@@ -51,6 +56,8 @@ export default function OrphanageDetails() {
       </View>
     )
   }
+
+
 
   return (
     <ScrollView style={styles.container}>
@@ -119,10 +126,10 @@ export default function OrphanageDetails() {
               </View>)}
         </View>
 
-        {/* <RectButton style={styles.contactButton} onPress={() => { }}>
+        <RectButton style={styles.contactButton} onPress={openWhatsapp}>
           <FontAwesome name="whatsapp" size={24} color="#FFF" />
           <Text style={styles.contactButtonText}>Entrar em contato</Text>
-        </RectButton> */}
+        </RectButton>
       </View>
     </ScrollView>
   )

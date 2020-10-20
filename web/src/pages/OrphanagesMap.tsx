@@ -19,7 +19,7 @@ interface Orphanage {
 
 const OrphanagesMap = () => {
 
-    const { goBack } = useHistory();
+    const history = useHistory();
 
     const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
     const [initialPosition, setInitialPosition] = useState({ latitude: -16.7502331, longitude: -43.8681855 });
@@ -38,6 +38,10 @@ const OrphanagesMap = () => {
         });
     }, []);
 
+    function goHome() {
+        history.push('/');
+    }
+
     return (
         <div id="page-map">
             <aside>
@@ -50,7 +54,7 @@ const OrphanagesMap = () => {
 
                 <footer>
                     <span>By Victor Gabriel</span>
-                    <button type="button" onClick={goBack}>
+                    <button type="button" onClick={goHome}>
                         <FiArrowLeft size={24} color="#FFF" />
                     </button>
                 </footer>

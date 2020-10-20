@@ -18,12 +18,13 @@ const CreateOrphanage = () => {
   const history = useHistory();
 
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
-  
+
 
   const [open_on_weekends, setOpenOnWeekends] = useState(false);
 
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
   const [instructions, setInstructions] = useState('');
   const [opening_hours, setOpeningHours] = useState('');
 
@@ -72,6 +73,7 @@ const CreateOrphanage = () => {
 
     data.append('name', name);
     data.append('about', about);
+    data.append('whatsapp', whatsapp);
     data.append('instructions', instructions);
     data.append('opening_hours', opening_hours);
     data.append('open_on_weekends', String(open_on_weekends));
@@ -85,8 +87,8 @@ const CreateOrphanage = () => {
 
     await api.post('orphanages', data);
 
-    alert('Cadastro realizado com sucesso!!!');
-    history.push('/map');
+    
+    history.push('/positive');
   }
 
   return (
@@ -154,6 +156,16 @@ const CreateOrphanage = () => {
               </div>
 
 
+            </div>
+
+            <div className="input-block">
+              <label htmlFor="whatsapp">WhatsApp</label>
+              <input
+                id="whatsapp"
+                maxLength={11}
+                value={whatsapp}
+                onChange={e => setWhatsapp(e.target.value)}
+              />
             </div>
           </fieldset>
 
